@@ -8,10 +8,11 @@ Config manager was built to solve common C++ configuration challenges and ease r
 Unlike Python, C++ strives for performance, but lacks many out of the box config tools and simple APIs. 
 Libraries such as Boost offer some functionality, for command line parsing and ini files.
 
-Yet, many projects often start simple but end up with hardcoded settings, making management difficult.
+However, so often as developers our projects start simple, and end up complex, with hardcoded settings.
+Or we want to share a tool with many parameter options, and want the ability to easily set, load, save, modify.
 
-The aim is to have a powerful configuration building block, for getting started quickly,
-while remaining flexible enough to serve various needs without being overly bloated or hard to change.
+This requires a powerful configuration building block for getting started quickly, while remaining flexible 
+enough to serve various needs without compromising on performance or ease of use.
 
 ## Simple API Example
 
