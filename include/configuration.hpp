@@ -255,7 +255,6 @@ complex:
 // File: configuration.hpp
 
 
-
 #ifndef CONFIGURATION_HPP
 #define CONFIGURATION_HPP
 
@@ -272,13 +271,15 @@ complex:
 #include <cstdlib>
 #include <vector>
 #include <sstream>
-#include <unistd.h> // For environ 
+#include <unistd.h> // For environ
 #include <string.h> 
 
 
-// Include the FormatManager
-#include "format_manager.hpp"
+#define FORMAT_MANAGER_INCLUDED  // Comment out line to exclude format manager functionality
 
+#ifdef FORMAT_MANAGER_INCLUDED
+#include "format_manager.hpp"
+#endif
 
 namespace config
 {
@@ -301,6 +302,7 @@ namespace config
         virtual void add_change_listener(const std::function<void(const std::string &, const nlohmann::json &)> &listener) = 0;
         virtual void backup_to_file(const std::string &backup_file_path) const = 0;
 
+#ifdef FORMAT_MANAGER_INCLUDED
         template<typename T = void>
         typename std::enable_if<std::is_same<T, std::ostream&>::value, std::ostream&>::type
         output_config(std::ostream &os) const;
@@ -308,8 +310,7 @@ namespace config
         template<typename T = void>
         typename std::enable_if<std::is_same<T, void>::value, void>::type
         output_config(std::ostream &os) const;
-
-
+#endif
     };
 
     class Config : public IConfigStorage
@@ -341,7 +342,7 @@ namespace config
         void add_change_listener(const std::function<void(const std::string &, const nlohmann::json &)> &listener) override;
         void backup_to_file(const std::string &backup_file_path) const override;
 
-
+#ifdef FORMAT_MANAGER_INCLUDED
         template<typename T = void>
         typename std::enable_if<std::is_same<T, std::ostream&>::value, std::ostream&>::type
         output_config(std::ostream &os) const;
@@ -349,9 +350,9 @@ namespace config
         template<typename T = void>
         typename std::enable_if<std::is_same<T, void>::value, void>::type
         output_config(std::ostream &os) const;
+#endif
         
     private:
-
         Config(const Config& other) = delete; // Do not allow copying
         Config& operator=(const Config& other) = delete; // Do not allow assignment
         Config(Config&& other) noexcept; // Custom move constructor
@@ -364,7 +365,7 @@ namespace config
         std::unordered_map<std::string, std::string> env_overrides_;
     };
 
-
+#ifdef FORMAT_MANAGER_INCLUDED
     // Template function definitions
     template<typename T>
     typename std::enable_if<std::is_same<T, std::ostream&>::value, std::ostream&>::type
@@ -415,7 +416,7 @@ namespace config
     {
         output_config<std::ostream&>(os);
     }
-
+#endif
 
     Config& Config::instance(const std::string &name)
     {
@@ -808,7 +809,9 @@ namespace config
                 {
                     if (yaml_config[key])
                     {
-                        config_map[key] = output_format::yaml_to_json(yaml_config[key]);
+                    #ifdef FORMAT_MANAGER_INCLUDED
+                    config_map[key] = output_format::yaml_to_json(yaml_config[key]);
+                    #endif
                     }
                 }
             }
@@ -856,7 +859,9 @@ namespace config
                     auto it = config_map.find(key);
                     if (it != config_map.end())
                     {
+                        #ifdef FORMAT_MANAGER_INCLUDED
                         out << YAML::Key << key << YAML::Value << output_format::json_to_yaml(it->second);
+                        #endif
                     }
                 }
                 out << YAML::EndMap;
@@ -898,7 +903,9 @@ namespace config
                 YAML::Node yaml_config = YAML::Load(config_file);
                 for (auto it = yaml_config.begin(); it != yaml_config.end(); ++it)
                 {
+                    #ifdef FORMAT_MANAGER_INCLUDED
                     config_map[it->first.as<std::string>()] = output_format::yaml_to_json(it->second);
+                    #endif
                 }
             }
             else
@@ -937,7 +944,9 @@ namespace config
                 out << YAML::Key << "version" << YAML::Value << version;
                 for (const auto &[key, value] : config_map)
                 {
+                    #ifdef FORMAT_MANAGER_INCLUDED
                     out << YAML::Key << key << YAML::Value << output_format::json_to_yaml(value);
+                    #endif
                 }
                 out << YAML::EndMap;
                 config_file << out.c_str();
@@ -1020,9 +1029,6 @@ namespace config
             std::cerr << "Error in backup_to_file: " << e.what() << std::endl;
         }
     }
-
-
-
 
 } // namespace config
 

@@ -1,3 +1,19 @@
+/*  File: test_configuration.cpp
+
+    * External Dependencies:
+    * - nlohmann/json
+    * - yaml-cpp
+    *
+    * (c) 2024, Benjamin Gorlick | github.com/bgorlick/config_manager/
+    * Distributed under the Boost Software License, Version 1.0.
+    * (See accompanying file LICENSE_1_0.txt or copy at https://www.boost.org/LICENSE_1_0.txt)
+    * 
+    * This file tests the Config class API functions with the FormatManager class.
+    * It uses the FormatManager class to handle different output formats.
+    * It shows numerous functionalities of the Config class and how to handle different output formats.
+    * 
+*/ 
+
 #include "../include/configuration.hpp"
 #include "../include/format_manager.hpp"
 #include <cassert>
