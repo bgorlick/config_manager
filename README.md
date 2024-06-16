@@ -1,8 +1,12 @@
 ## Config Manager C++ 
 
-Header-only C++ library for managing configurations in JSON, YAML and env vars with a built in Configuration Factory
+Header-only C++ library for managing configurations in JSON, YAML and env vars with a built in Configuration Factory.
 
-Supports loading, saving, config listeners that detect changes to the config, and managing configurations from JSON, YAML, and environment variables.
+It supports many features including seamless conversion of configs between JSON and YAML, and the ability to access all environmental variables and use them in configurations.
+
+Basic and more advanced features include loading, saving, config listeners, thread safe config creation, and managing configurations from JSON, YAML, and environment variables.
+
+This repo comes with some helpful examples in the tests/ folder showcasing much more powerful features.
 
 ## Simple API Example
 
