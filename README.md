@@ -14,11 +14,7 @@ Supports loading, saving, and managing configurations from JSON, YAML, and envir
 - nlohmann/json
 - yaml-cpp
 
-(c) 2024, Benjamin Gorlick | [github.com/bgorlick/config_manager](https://github.com/bgorlick/config_manager)
-Distributed under the Boost Software License, Version 1.0.  
-(See accompanying file LICENSE_1_0.txt or copy at https://www.boost.org/LICENSE_1_0.txt)
-
-# Building this repo for Testing
+## Building this repo for Testing
 
 This repo includes a unit test in tests/ which you can build with both a `CMakeLists.txt` and a `Makefile`, or directly with GCC/CLang.
 
@@ -26,28 +22,30 @@ This repo includes a unit test in tests/ which you can build with both a `CMakeL
 
 To build the `test_configuration` in the `tests/` directory, run:
 
-make
+`make`
 
 ## Using CMake
 
 To build with CMake, follow these steps:
 
+```bash
 mkdir -p build
 cd build
 cmake ..
 make
+```
 
 ## Using GCC
 
 To build with GCC for C++20:
 
-g++ -std=c++20 -o test_configuration tests/test_configuration.cpp -lyaml-cpp -ljsoncpp -lc -Wall -Wextra -Wpedantic
+`g++ -std=c++20 -o test_configuration tests/test_configuration.cpp -lyaml-cpp -ljsoncpp -lc -Wall -Wextra -Wpedantic`
 
 ## Using Clang
 
 To build with Clang for C++20:
 
-clang++ -std=c++20 -o test_configuration tests/test_configuration.cpp -lyaml-cpp -ljsoncpp -lc -Wall -Wextra -Wpedantic
+`clang++ -std=c++20 -o test_configuration tests/test_configuration.cpp -lyaml-cpp -ljsoncpp -lc -Wall -Wextra -Wpedantic`
 
 ## Why Another Config Manager
 
@@ -363,3 +361,10 @@ complex:
   key3:
     nestedKey: value
 ```
+
+## Copyright
+(c) 2024, Benjamin Gorlick | [github.com/bgorlick/config_manager](https://github.com/bgorlick/config_manager)
+
+## License
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE_1_0.txt or copy at https://www.boost.org/LICENSE_1_0.txt)
