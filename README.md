@@ -1,19 +1,9 @@
-## Config Manager C++ 
-
-Powerful, Easy to Use, Header-only C++ library for configurations in JSON, YAML and env vars.
+Powerful, Customizable, Header-only C++ library for configurations in JSON, YAML and env vars with configuration listeners and thread safety functionality.
 
 ## Why Another Config Manager
+Config manager simplifies C++ configuration with high performance and ease of use. Unlike Python's many tools and libs, C++ lacks versatile APIs outside the STL for configuration, and Boost doesn't fully address complex configurations or JSON/YAML interoperable handling. So often, our projects grow from simple to complex with hardcoded settings. 
 
-Config manager was built to solve common C++ configuration challenges and ease rapid development.
-Unlike Python, C++ strives for performance, but lacks many out of the box config tools and simple APIs. 
-Libraries such as Boost offer some functionality, for command line parsing and ini files, but for complex
-configurations, or wanting easy versatility between JSON and YAML, there is not a fits-all option.
-
-As developers, our projects start simple, and often become complex, with hardcoded settings. We want to share a project,
-but it has many parameter options, and we want to extend users the ability to easily set, load, save, modify those settings.
-
-This requires a powerful configuration building block for getting started quickly, while remaining flexible 
-enough to serve various needs without compromising on performance or ease of use.
+Config manager enables easy setting, loading, saving, and modifying of configurations, making it ideal for sharing projects. It provides a powerful, flexible, and performant solution for diverse configuration needs, ensuring quick startup and user-friendly operation.
 
 ## Simple API Example
 
