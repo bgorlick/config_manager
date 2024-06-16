@@ -1,31 +1,66 @@
 ## Config Manager C++ 
 
-Header-only C++ library for managing configurations in JSON, YAML and env vars with a built in Configuration Factory.
+Powerful, Easy to Use, Header-only C++ library for configurations in JSON, YAML and env vars.
 
-It supports many features including seamless conversion of configs between JSON and YAML, and the ability to access all environmental variables and use them in configurations.
+## Why Another Config Manager
 
-Basic and more advanced features include loading, saving, config listeners, thread safe config creation, and managing configurations from JSON, YAML, and environment variables.
+Config manager was built to solve common C++ configuration challenges and ease rapid development.
+Unlike Python, C++ strives for performance, but lacks many out of the box config tools and simple APIs. 
+Libraries such as Boost offer some functionality, for command line parsing and ini files.
 
-This repo comes with some helpful examples in the tests/ folder showcasing much more powerful features.
+Yet, many projects often start simple but end up with hardcoded settings, making management difficult.
+
+The aim is to have a powerful configuration building block, for getting started quickly,
+while remaining flexible enough to serve various needs without being overly bloated or hard to change.
 
 ## Simple API Example
 
 ```cpp
 #include "configuration.hpp"
-
 using namespace config;
-
 // Create a default config instance
 Config &config = Config::instance();
-
 // Create a key called 'name' with a value 'example'
 config.set("name", "example");
-
 // Retrieve the value of the key 'name'
 std::cout << config.get("name") << std::endl;
 ```
 *Expected result:*
 `example`
+
+Out-of-the-box features include:
+
+1. **Unified Configuration Handling**: Handles JSON, YAML, and environment 
+   variables in one library. 
+   - Includes the ability to convert configs between JSON, YAML, and ENV 
+     with simple API calls, and output files in any of those formats.
+   - (Hint: See format_manager.hpp in the include/ directory)
+
+2. **Header-Only Implementation**: Easy integration with no extra compilation.
+
+3. **Comprehensive API**: Functions for loading, saving, managing configurations, 
+   adding listeners, and handling various data types.
+
+4. **Factory Design Pattern**: Simplifies creating and managing instances, 
+   supporting defaults, files, and environment-specific settings.
+
+5. **Thread-Safe and Pooled Config Instances**: Essential for modern apps, offering 
+   thread-safe configurations and instance pooling for better performance.
+
+6. **Minimal External Dependencies**: Relies only on nlohmann/json and yaml-cpp, 
+   ensuring lightweight yet powerful functionality.
+
+7. **Boost Software License**: Permissive license allows free use, modification, and 
+   distribution, even in commercial applications.
+
+In short, I built this to offer a flexible, powerful, and user-friendly solution 
+for both beginner and experienced C++ community members. Report issues on the repo. 
+Contributions and feedback are welcome.
+
+It supports many features including seamless conversion of configs between JSON and YAML, and the ability to access all environmental variables and use them in configurations.
+
+Basic and more advanced features include loading, saving, config listeners, thread safe config creation, and managing configurations from JSON, YAML, and environment variables.
+
 
 ## Key Components
 - **IConfigStorage Interface**: Defines the required configuration management functions.
@@ -70,43 +105,7 @@ To build with Clang for C++20:
 
 `clang++ -std=c++20 -o test_configuration tests/test_configuration.cpp -lyaml-cpp -ljsoncpp -lc -Wall -Wextra -Wpedantic`
 
-## Why Another Config Manager
 
-Config manager was built to solve common C++ configuration challenges. Unlike 
-Python, C++ lacks easy-to-use config tools and simple APIs. Projects often start 
-simple but end up with hardcoded settings, making management difficult.
-
-The aim is to implement something powerful for getting started quickly and flexible enough
-to adapt to various needs without being overly bloated or too difficult to modify.
-
-Hopefully, its out-of-the-box features satisfy your common needs:
-
-1. **Unified Configuration Handling**: Handles JSON, YAML, and environment 
-   variables in one library. 
-   - Includes the ability to convert configs between JSON, YAML, and ENV 
-     with simple API calls, and output files in any of those formats.
-   - (Hint: See format_manager.hpp in the include/ directory)
-
-2. **Header-Only Implementation**: Easy integration with no extra compilation.
-
-3. **Comprehensive API**: Functions for loading, saving, managing configurations, 
-   adding listeners, and handling various data types.
-
-4. **Factory Design Pattern**: Simplifies creating and managing instances, 
-   supporting defaults, files, and environment-specific settings.
-
-5. **Thread-Safe and Pooled Config Instances**: Essential for modern apps, offering 
-   thread-safe configurations and instance pooling for better performance.
-
-6. **Minimal External Dependencies**: Relies only on nlohmann/json and yaml-cpp, 
-   ensuring lightweight yet powerful functionality.
-
-7. **Boost Software License**: Permissive license allows free use, modification, and 
-   distribution, even in commercial applications.
-
-In short, I built this to offer a flexible, powerful, and user-friendly solution 
-for both beginner and experienced C++ community members. Report issues on the repo. 
-Contributions and feedback are welcome.
 
 
 ## Key Classes and Functions
