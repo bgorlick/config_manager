@@ -16,11 +16,13 @@ Config &config = Config::instance();
 config.set("name", "example");
 // Retrieve the value of the key 'name'
 std::cout << config.get("name") << std::endl;
-```
-*Expected result:*
-`example`
 
-Out-of-the-box features include:
+// Expected result:
+example
+
+```
+
+## Out-of-the-box features include:
 
 1. **Unified Configuration Handling**: Handles JSON, YAML, and environment 
    variables in one library. 
