@@ -2,7 +2,26 @@
 
 Header-only C++ library for managing configurations in JSON, YAML and env vars with a built in Configuration Factory
 
-Supports loading, saving, and managing configurations from JSON, YAML, and environment variables.
+Supports loading, saving, config listeners that detect changes to the config, and managing configurations from JSON, YAML, and environment variables.
+
+## Simple API Example
+
+```cpp
+#include "configuration.hpp"
+
+using namespace config;
+
+// Create a default config instance
+Config &config = Config::instance();
+
+// Create a key called 'name' with a value 'example'
+config.set("name", "example");
+
+// Retrieve the value of the key 'name'
+std::cout << config.get("name") << std::endl;
+```
+*Expected result:*
+`example`
 
 ## Key Components
 - **IConfigStorage Interface**: Defines the required configuration management functions.
